@@ -1,17 +1,29 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import "@adyen/adyen-web/dist/adyen.css";
-import { useRouter } from "next/navigation";
-import { setupAdyenCheckout } from "@/actions/setupAdyenCheckout";
-import Modal from "@/components/modal";
 import Checkout from "@/components/Checkout";
+import { storeItems } from "@/lib/data";
+import ShopItem from "@/components/ShopItem";
+import Title from "@/components/Title";
 
 export default function Home() {
-
   return (
-    <div className = 'bg-gray-200'>
-      <Checkout />
+    <div className="bg-gray-200">
+      <Title text="Skate shop" className = 'mb-10' />
+      <div className = 'grid grid-cols-4'>
+        {storeItems.map((item) => {
+          return (
+            <ShopItem
+              key = {item.id}
+              id={item.id}
+              image={item.image}
+              name={item.name}
+              description={item.description}
+              price={item.price}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
