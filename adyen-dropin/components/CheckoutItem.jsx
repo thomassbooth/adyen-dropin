@@ -6,8 +6,6 @@ import Modal from "./Headless/Modal";
 import { toast } from "sonner";
 
 const CheckoutItem = ({ id, index, name, description, image, price }) => {
-  const [removeItem] = useCart((state) => [state.removeItem]);
-  const [isRemoveOpen, setIsRemoveOpen] = useState(false);
   return (
     <div>
       <div className="flex items-center ">
@@ -33,23 +31,7 @@ const CheckoutItem = ({ id, index, name, description, image, price }) => {
             >
               <RiDeleteBin6Line size={25} />
             </button>
-            <Modal
-              isOpen={isRemoveOpen}
-              setIsOpen={setIsRemoveOpen}
-              title="Remove Item"
-            >
-              <div>Are you sure you want to remove {name} from your cart?</div>
-              <div className = 'flex text-white gap-5'>
-                <button className = 'px-5 py-2 bg-emerald-500/80 rounded-lg' onClick = {() => {
-                  removeItem(index);
-                  setIsRemoveOpen(false);
-                  toast.success('Item removed from cart')
-                }}>Yes</button>
-                <button className = 'px-5 py-2 bg-red-500/80 rounded-lg' onClick = {() => {
-                  setIsRemoveOpen(false);
-                }}>No</button>
-              </div>
-            </Modal>
+            <RemoveCartModal index = {index}/>
           </div>
         </div>
       </div>
@@ -58,3 +40,38 @@ const CheckoutItem = ({ id, index, name, description, image, price }) => {
 };
 
 export default CheckoutItem;
+
+
+const RemoveCartModal = ({index}) => {
+  const [isRemoveOpen, setIsRemoveOpen] = useState(false);
+  const [removeItem] = useCart((state) => [state.removeItem]);
+  return (
+    <Modal
+      isOpen={isRemoveOpen}
+      setIsOpen={setIsRemoveOpen}
+      title="Remove Item"
+    >
+      <div>Are you sure you want to remove {name} from your cart?</div>
+      <div className="flex text-white gap-5">
+        <button
+          className="px-5 py-2 bg-emerald-500/80 rounded-lg"
+          onClick={() => {
+            removeItem(index);
+            setIsRemoveOpen(false);
+            toast.success("Item removed from cart");
+          }}
+        >
+          Yes
+        </button>
+        <button
+          className="px-5 py-2 bg-red-500/80 rounded-lg"
+          onClick={() => {
+            setIsRemoveOpen(false);
+          }}
+        >
+          No
+        </button>
+      </div>
+    </Modal>
+  );
+};
