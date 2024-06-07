@@ -8,7 +8,6 @@ import useCart from "@/store/useCart";
 
 const ShopItem = ({ id, name, image, description, price }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [items, addItem] = useCart((state) => [state.items, state.addItem]);
 
   return (
     <div>
@@ -38,6 +37,7 @@ const ShopItem = ({ id, name, image, description, price }) => {
 export default ShopItem;
 
 const ShopItemModal = ({isOpen, setIsOpen, name, image, description, price, id}) => {
+  const [items, addItem] = useCart((state) => [state.items, state.addItem]);
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen} name={name}>
       <div className="w-full">

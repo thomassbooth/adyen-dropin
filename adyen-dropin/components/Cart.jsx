@@ -34,23 +34,8 @@ const Cart = () => {
             className="w-52 mt-2 origin-top-right rounded-xl border border-white/5 bg-black p-1 text-sm/6 text-white [--anchor-gap:var(--spacing-1)] focus:outline-none"
           >
             <MenuItem>
-              <a className="block data-[focus]:bg-blue-100" href="/settings">
-                Settings
-              </a>
-            </MenuItem>
-            <MenuItem>
-              <a className="block data-[focus]:bg-blue-100" href="/support">
-                Support
-              </a>
-            </MenuItem>
-            <MenuItem>
-              <a className="block data-[focus]:bg-blue-100" href="/license">
-                License
-              </a>
-            </MenuItem>
-            <MenuItem>
               <p>
-                Total: ${items.reduce((acc, item) => acc + item.price, 0)}
+                Total: ${items.reduce((acc, item) => acc + item.price, 0).toFixed(2)}
               </p>
             </MenuItem>
             <MenuItem>
