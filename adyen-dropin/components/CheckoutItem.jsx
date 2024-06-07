@@ -6,6 +6,7 @@ import Modal from "./Headless/Modal";
 import { toast } from "sonner";
 
 const CheckoutItem = ({ id, index, name, description, image, price }) => {
+  const [isRemoveOpen, setIsRemoveOpen] = useState(false);
   return (
     <div>
       <div className="flex items-center ">
@@ -14,7 +15,7 @@ const CheckoutItem = ({ id, index, name, description, image, price }) => {
           src={image}
           width={100}
           height={100}
-          objectFit="cover"
+          objectFit="contain"
         />
         <div className="flex h-full w-full ml-7  justify-between">
           <div className="flex-col gap-2">
@@ -31,7 +32,7 @@ const CheckoutItem = ({ id, index, name, description, image, price }) => {
             >
               <RiDeleteBin6Line size={25} />
             </button>
-            <RemoveCartModal index = {index}/>
+            <RemoveCartModal index = {index} setIsRemoveOpen={setIsRemoveOpen} isRemoveOpen={isRemoveOpen}/>
           </div>
         </div>
       </div>
@@ -42,8 +43,7 @@ const CheckoutItem = ({ id, index, name, description, image, price }) => {
 export default CheckoutItem;
 
 
-const RemoveCartModal = ({index}) => {
-  const [isRemoveOpen, setIsRemoveOpen] = useState(false);
+const RemoveCartModal = ({index, isRemoveOpen, setIsRemoveOpen}) => {
   const [removeItem] = useCart((state) => [state.removeItem]);
   return (
     <Modal

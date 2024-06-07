@@ -23,7 +23,7 @@ const ShopItem = ({ id, name, image, description, price }) => {
           src={image}
           width={300}
           height={300}
-          objectFit="cover"
+          objectFit="contain"
         />
         <div className="text-lg font-bold mt-2">{name}</div>
         <div className="text-md font-semi-bold mt-2 text-gray-500">
@@ -43,11 +43,11 @@ const ShopItemModal = ({isOpen, setIsOpen, name, image, description, price, id})
       <div className="w-full">
         <div className="w-full flex justify-center mb-10">
           <Image
-            className="rounded-lg  w-[300px] h-[300px]"
+            className="rounded-lg  w-[500px] h-[500px]"
             src={image}
-            width={300}
-            height={300}
-            objectFit="cover"
+            width={500}
+            height={500}
+            objectFit="contain"
           />
         </div>
         <div className="w-full">

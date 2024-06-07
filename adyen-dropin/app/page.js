@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="bg-gray-200">
       <Title text="Skate shop" className = 'mb-10' />
-      <div className = 'grid grid-cols-4'>
+      <div className = 'grid grid-cols-4 justify-center'>
         {storeItems.map((item) => {
           return (
             <ShopItem
