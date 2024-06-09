@@ -15,7 +15,7 @@ const CheckoutItem = ({ id, index, name, description, image, price }) => {
           src={image}
           width={100}
           height={100}
-          objectFit="contain"
+          objectFit="stretch"
         />
         <div className="flex h-full w-full ml-7  justify-between">
           <div className="flex-col gap-2">
@@ -58,7 +58,7 @@ const RemoveCartModal = ({index, isRemoveOpen, setIsRemoveOpen}) => {
           onClick={() => {
             removeItem(index);
             setIsRemoveOpen(false);
-            toast.success("Item removed from cart");
+            toast.error("Item removed from cart");
           }}
         >
           Yes

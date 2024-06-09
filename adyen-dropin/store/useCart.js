@@ -6,6 +6,7 @@ const useCart = create((set) => ({
   removeItem: (index) => set((state) => ({
     items: state.items.filter((_, i) => i !== index)
   })),
+  emptyCart: () => set({ items: [] })
 }))
 
 export default useCart;

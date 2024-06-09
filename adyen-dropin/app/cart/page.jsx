@@ -12,7 +12,7 @@ export default function Home() {
       <div className="flex justify-center">
         <div className="flex flex-col gap-5 w-1/2 px-10">
           <Subtitle text="Bag" className="mb-5" />
-          {items.map((item, index) => {
+          {items.length > 0 ? items.map((item, index) => {
             return (
               <>
                 <CheckoutItem
@@ -26,7 +26,9 @@ export default function Home() {
                 />
               </>
             );
-          })}
+          }) : (
+            <div className="text-center text-gray-500">No items in your bag</div>
+          )}
         </div>
         <div className="w-1/4">
           <Subtitle text="Summary" className="mb-5" />

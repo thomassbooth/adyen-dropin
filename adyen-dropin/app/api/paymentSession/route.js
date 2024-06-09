@@ -3,22 +3,18 @@
 import AdyenClient from '@/lib/adyen-client';
 import { CheckoutAPI } from '@adyen/api-library';
 
+
+const { ADYEN_MERCHANT_ACCOUNT } = process.env;
 export async function POST(req) {
   try {
 
     const { merchantAccount, amount, reference } = await req.json();
 
-    console.log('merchantAccount', merchantAccount)
-    console.log('amount', amount)
-    console.log('reference', reference )
     const checkout = new CheckoutAPI(AdyenClient);
     const response = await checkout.PaymentsApi.sessions({
-      merchantAccount: 'TslMediaECOM',
-      amount: {
-        value: 1000,
-        currency: "EUR"
-      },
-      reference: '123456aaasd12aa',
+      merchantAccount: ADYEN_MERCHANT_ACCOUNT,
+      amount,
+      reference: reference,
       returnUrl: 'http://localhost:3000/complete',
       countryCode: 'NL',
     });

@@ -9,6 +9,8 @@ import {
 } from "@headlessui/react";
 import useCart from "@/store/useCart";
 import Link from "next/link";
+import { MdShoppingCartCheckout } from "react-icons/md";
+
 
 const Cart = () => {
   const [items] = useCart((state) => [state.items]);
@@ -31,15 +33,26 @@ const Cart = () => {
         >
           <MenuItems
             anchor="bottom end"
-            className="w-52 mt-2 origin-top-right rounded-xl border border-white/5 bg-black p-1 text-sm/6 text-white [--anchor-gap:var(--spacing-1)] focus:outline-none"
+            className="w-52 mt-2 origin-top-right rounded-xl border border-white/5 bg-black/40 p-1 text-sm/6 text-white [--anchor-gap:var(--spacing-1)] focus:outline-none"
           >
+            <MenuItem>
+            <p className = 'text-lg/6 font-semibold'>SkatersHub</p>
+            </MenuItem>
+            {items.map((item) => {return (
+              <MenuItem key={item.id}>
+                <p>
+                  {item.name} - ${item.price.toFixed(2)}
+                </p>
+              </MenuItem>
+            );}
+            )}
             <MenuItem>
               <p>
                 Total: ${items.reduce((acc, item) => acc + item.price, 0).toFixed(2)}
               </p>
             </MenuItem>
-            <MenuItem>
-              <Link href="/cart">Checkout</Link>
+            <MenuItem className = 'flex items-center gap-2 justify-center bg-blue-500 rounded-lg'>
+              <Link href="/cart">Checkout <MdShoppingCartCheckout/></Link>
             </MenuItem>
           </MenuItems>
         </Transition>

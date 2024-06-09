@@ -1,12 +1,18 @@
 "use client";
 
-import Checkout from "@/components/Checkout";
+import AdyenCheckout from "@/components/AdyenCheckout";
+import Subtitle from "@/components/Subtitle";
+import Title from "@/components/Title";
+import useCart from "@/store/useCart";
 
 
 export default function Home() {
+  const [items] = useCart((state) => [state.items]);
   return (
-    <div className="bg-gray-200">
-      <Checkout/>
+    <div className="bg-gray-200 flex flex-col items-center">
+      <Title text="Checkout" className = 'mb-5'/>
+      <Subtitle text="Choose how youd like to pay!"className = 'mb-10 text-gray-500'/>
+      <AdyenCheckout/>
     </div>
   );
 }

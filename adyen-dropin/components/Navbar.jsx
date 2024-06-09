@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <>
       <div className="w-full px-9 py-3 flex justify-between">
-        <div className = 'flex items-center gap-2'>
+        <div className = 'flex items-center gap-4'>
           <Link className="font-bold" href="/">
             SkatersHub
           </Link>
