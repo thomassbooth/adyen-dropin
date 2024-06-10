@@ -4,6 +4,7 @@ import { SiTicktick } from "react-icons/si";
 
 export default function Home({ searchParams }) {
   const paymentRef = searchParams["paymentRef"];
+
   return (
     <div className="bg-gray-200 flex flex-col items-center justify-center">
       <Title text="Payment complete" className="mb-5" />

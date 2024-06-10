@@ -15,7 +15,7 @@ export async function POST(req) {
       merchantAccount: ADYEN_MERCHANT_ACCOUNT,
       amount,
       reference: reference,
-      returnUrl: 'http://localhost:3000/complete',
+      returnUrl: 'http://localhost:3000/payment/checkout',
       countryCode: 'NL',
     });
     

@@ -2,11 +2,14 @@ import axios from "axios";
 import AdyenCheckout from "@adyen/adyen-web";
 
 
-export async function setupAdyenCheckout(router, amount, emptyCart) {
+export async function setupAdyenCheckout(router, amount, emptyCart, additionalConfig = {}) {
   try {
     //setup our session
     const paymentRef = crypto.randomUUID();
+
+    //client call to the server to handle setting up the payment session with Adyen
     const { data: session } = await axios.post("/api/paymentSession", {
+      //replace the decimal to set to minor units (find in documentation for correct minor units for each currency)
       amount: { currency: "USD", value: amount.replace('.', '') },
       reference: paymentRef,
     });
@@ -26,6 +29,7 @@ export async function setupAdyenCheckout(router, amount, emptyCart) {
         console.log("Payment error", error)
         router.push(`/payment/rejection?paymentRef=${paymentRef}`)
       },
+      ...additionalConfig
     };
 
     return await AdyenCheckout(configuration);
